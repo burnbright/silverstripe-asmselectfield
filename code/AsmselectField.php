@@ -38,17 +38,8 @@ class AsmselectField extends DropdownField{
 			$removelabel = 'remove'; //TODO: allow to be custom
 			
 			//TODO: provide more customisation options
-			$script = <<<JS
-					jQuery(document).ready(function($) {
-					    $("select#$id").livequery(function(){
-						    $(this).asmSelect({
-						    	listType: 'ul',
-						    	removeLabel: "$removelabel"
-						    });
-						});
-					}); 
-JS;
-			Requirements::customScript($script,'asmselect'.$this->name);
+			
+			Requirements::javascript('asmselectfield/javascript/asmselectfield.js');
 		}
 		
 		$options = '';
@@ -101,8 +92,10 @@ JS;
 			}
 		}
 		
+		
+		
 		$attributes = array(
-			'class' => ($this->extraClass() ? $this->extraClass() : ''),
+			'class' => ($this->extraClass() ? $this->extraClass()." asmselectfield" : 'asmselectfield'),
 			'id' => $this->id(),
 			'name' => $this->name."[]",
 			'tabindex' => $this->getTabIndex(),
