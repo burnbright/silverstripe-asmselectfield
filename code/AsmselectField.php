@@ -31,7 +31,7 @@ class AsmselectField extends DropdownField{
 		if($this->usejavascript){
 			//Requirements::css('jqueryfields/asmselect/jquery.asmselect.css'); //can be included seperately if desired
 			Requirements::javascript('jsparty/jquery/jquery.js');
-			Requirements::javascript('jsparty/jquery/livequery/jquery.livequery.js');
+			Requirements::javascript('jsparty/jquery/plugins/livequery/jquery.livequery.js');
 			Requirements::javascript('asmselectfield/javascript/jquery.asmselect.js');
 			
 			$id = $this->id();
