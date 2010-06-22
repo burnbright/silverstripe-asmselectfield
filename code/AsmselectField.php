@@ -90,9 +90,7 @@ class AsmselectField extends DropdownField{
 					$title
 				);
 			}
-		}
-		
-		
+		}	
 		
 		$attributes = array(
 			'class' => ($this->extraClass() ? $this->extraClass()." asmselectfield" : 'asmselectfield'),
@@ -109,14 +107,13 @@ class AsmselectField extends DropdownField{
 	}
 	
 	function saveInto(DataObject $record) {
+		
 		$fieldName = $this->name;
 		$saveDest = $record->$fieldName();
 		if(! $saveDest)
 			user_error("AsmselectField::saveInto() Field '$fieldName' not found on $record->class.$record->ID", E_USER_ERROR);
-		
-		$values = explode(",",$this->value[0]);
-		$saveDest->setByIDList($values);
-
+		if(is_array($this->value))
+			$saveDest->setByIDList($this->value);
 	}
 	
 	function setListSize($size){
