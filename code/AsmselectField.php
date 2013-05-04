@@ -26,7 +26,7 @@ class AsmselectField extends DropdownField{
 		parent::__construct($name, $title, $source, $values , $form, null);
 	}
 
-	function Field() {
+	function Field($properties = array()) {
 
 		if($this->usejavascript){
 			Requirements::css(ASMSELECTFIELD_DIR.'/css/jquery.asmselect.basic.css'); //can be included seperately if desired
@@ -65,9 +65,7 @@ class AsmselectField extends DropdownField{
 			if(is_object($source) && $this->emptyString) {
 				$options .= $this->createTag('option', array('value' => ''), $this->emptyString);
 			}
-
 			foreach($source as $value => $title) {
-
 				// Blank value of field and source (e.g. "" => "(Any)")
 				if($value === '' && ($values === '' || $values === null)) {
 					$selected = 'selected';
@@ -79,7 +77,6 @@ class AsmselectField extends DropdownField{
 						$this->isSelected = ($selected) ? true : false;
 					}
 				}
-
 				$options .= $this->createTag(
 					'option',
 					array(
@@ -90,12 +87,11 @@ class AsmselectField extends DropdownField{
 				);
 			}
 		}
-
 		$attributes = array(
 			'class' => ($this->extraClass() ? $this->extraClass()." asmselectfield" : 'asmselectfield'),
 			'id' => $this->id(),
 			'name' => $this->name."[]",
-			'tabindex' => $this->getTabIndex(),
+			'tabindex' => $this->getAttribute('tabindex'),
 			'multiple' => 'multiple',
 			'size' => $this->rollbacksize
 		);
@@ -105,7 +101,7 @@ class AsmselectField extends DropdownField{
 		return $this->createTag('select', $attributes, $options);
 	}
 
-	function saveInto(DataObject $record) {
+	function saveInto(DataObjectInterface $record) {
 
 		$fieldName = $this->name;
 		$saveDest = $record->$fieldName();
