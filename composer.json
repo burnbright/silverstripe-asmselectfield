@@ -1,0 +1,21 @@
+{
+	"name" : "burnbright/silverstripe-asmselectfield",
+	"description" : "Select multiple fields, with enhancement by javascript.",
+	"license" : "BSD-2-Clause",
+	"type" : "silverstripe-module",
+	"keywords" : ["silverstripe","select", "multiple", "field"],
+	"authors" : [
+		{
+			"name" : "Jeremy Shipman",
+			"email" : "jeremy@burnbright.net",
+			"homepage" : "https://github.com/jedateach",
+			"role" : "Developer"
+		}
+	],
+	"require" : {
+		"silverstripe/framework": "~3.1"
+	},
+	"extra" : {
+		"installer-name": "asmselectfield",
+	}
+}
